@@ -5,65 +5,20 @@ const AddExpensesForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
-
-  // Combaine All Sate To single Sate.
-  /* 
-  const [userInput, setUserInput]= useState({
-      enteredTitle: '',
-      enteredAmount: '',
-      enteredDate: ''
-  })
-
-  */
  const cancleHandler = () => {
    props.onCancel();
  }
   const titleChngeHandler = (event) => {
     // When We use Multiple Sate
     setEnteredTitle(event.target.value);
-
-    // setUserInput({
-    //     ...userInput,
-    //     enteredTitle: event.target.value
-    // })
-
-    /*
-    // When we use Single Sate
-    setUserInput ((previousSate) => {
-        return {...previousSate , enteredTitle: event.target.value}
-    });
-    */
   };
   const amountChangeHandler = (event) => {
     // When We use Multiple Sate
     setEnteredAmount(event.target.value);
-
-    // setUserInput({
-    //     ...userInput,
-    //     enteredAmount: event.target.value
-    // })
-
-    /*
-    // When we use Single State.
-    setUserInput ((previousSate) => {
-        return {...previousSate, enteredAmount: event.target.value}
-    })*/
   };
   const dateChangeHandler = (event) => {
     // When We use Multiple Sate
     setEnteredDate(event.target.value);
-
-    // setUserInput({
-    //     ...userInput,
-    //     enteredDate: event.target.value
-    // })
-
-    /*
-    // When we use Single State.
-    setUserInput((previousSate) => {
-        return {...previousSate, enteredDate: event.target.value}
-    })
-    */
   };
   const submitHandler = (event) => {
     event.preventDefault(); // to Stop reloading
@@ -73,25 +28,10 @@ const AddExpensesForm = (props) => {
       amount: enteredAmount,
       date: new Date(enteredDate),
     };
-    /*
-    // When we use Multiple Sate.
-    const expenseData = {
-      title: userInput.enteredTitle,
-      amount: userInput.enteredAmount,
-      date: new Date(userInput.enteredDate),
-    };
-    */
     props.onsaveExpenseData(expenseData);
     setEnteredTitle(''); // Reset the Sate.
     setEnteredAmount(''); // Reset the  Sate
     setEnteredDate('');// Reset The Sate
-
-    // When we Use Single Sate For All Input and rest The Value.
-    /*
-    setUserInput(() => {
-      return { enteredTitle: "", enteredAmount: "", enteredDate: "" };
-    });
-    */
   };
   return (
     <form onSubmit={submitHandler}>
@@ -103,11 +43,6 @@ const AddExpensesForm = (props) => {
             value={enteredTitle}
             onChange={titleChngeHandler}
           />
-          {/* <input
-            type="text"
-            value={userInput.enteredTitle}
-            onChange={titleChngeHandler}
-          /> */}
         </div>
         <div className="new-expense__control">
           <label>Amount</label>
@@ -118,13 +53,6 @@ const AddExpensesForm = (props) => {
             value={enteredAmount}
             onChange={amountChangeHandler}
           />
-          {/* <input
-            type="number"
-            min="0.01"
-            step="0.01"
-            value={userInput.enteredAmount}
-            onChange={amountChangeHandler}
-          /> */}
         </div>
         <div className="new-expense__control">
           <label>Date</label>
@@ -135,13 +63,6 @@ const AddExpensesForm = (props) => {
             value={enteredDate}
             onChange={dateChangeHandler}
           />
-          {/* <input
-            type="date"
-            min="2019-01-01"
-            max="2022-12-31"
-            value={userInput.enteredDate}
-            onChange={dateChangeHandler}
-          /> */}
         </div>
       </div>
       <div className="new-expense__actions">
